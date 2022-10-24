@@ -44,9 +44,7 @@ library(psych)
 library(tidyr)
 library(EMD)
 
-#Setting up working directory
 
-setwd("C:/Users/Francisco/Documents/PhDOSU/ThesisDatAnalysis/loonlk")
 
 #Using Hatten's theme for plots
 
@@ -91,7 +89,7 @@ eda$prd_c<-factor((eda$prd_c),levels = (c("400-500","500-600","600-700","700-800
 #################################################
 #Entropy
 
-### Empirical Mode Decomposition (hrel_t)
+### Empirical Mode Decomposition (hrel_6)
 par(mfrow=c(3,1), mar=c(1.5,0.1,0.2,0.1))
 try <- emd(eda$hrel_6, eda$z, boundary="wave")
 
