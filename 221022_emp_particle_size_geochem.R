@@ -1,5 +1,5 @@
 ################################################################################
-#October 22-2022 Loon Lake DataAnalysis
+#October 22-2022 Loon Lake Data Analysis
 ################################################################################
 #Loon Lake Empirical Mode Decomposition 
 ################################################################################
@@ -10,39 +10,47 @@
 
 #Loading libraries
 
-library(ggplot2)
-library(reshape2)
-library(lubridate)
-library(gridExtra)
-library(grid)
-library(plyr)
-library(dplyr)
-library(nlme)
-library(doBy)
-library(MASS)
-library(lsmeans)
-library(carData)
-library(utils)
-library(multcompView)
-library(cowplot)
-library(scales)
-library(imputeTS)
-library(RColorBrewer)
-library(tidyr)
-library(gridExtra)
-library(lattice)
-library(grid)
-library(gridBase)
-library(MuMIn)
-library(hexbin)
-library(MASS)
-library(devtools)
-library(curl)
-library(scales)
-library(ggpubr)
-library(psych)
-library(tidyr)
-library(EMD)
+#Run for the first time only:
+# install.packages("librarian")
+# librarian::lib_startup(librarian, global = TRUE)
+# source: https://cran.r-project.org/web/packages/librarian/readme/README.html
+
+librarian::shelf(ggplot2,dplyr,imputeTS,curl,EMD)
+
+
+# library(ggplot2)
+# library(reshape2)
+# library(lubridate)
+# library(gridExtra)
+# library(grid)
+# library(plyr)
+# library(dplyr)
+# library(nlme)
+# library(doBy)
+# library(MASS)
+# library(lsmeans)
+# library(carData)
+# library(utils)
+# library(multcompView)
+# library(cowplot)
+# library(scales)
+# library(imputeTS)
+# library(RColorBrewer)
+# library(tidyr)
+# library(gridExtra)
+# library(lattice)
+# library(grid)
+# library(gridBase)
+# library(MuMIn)
+# library(hexbin)
+# library(MASS)
+# library(devtools)
+# library(curl)
+# library(scales)
+# library(ggpubr)
+# library(psych)
+# library(tidyr)
+# library(EMD)
 
 
 
@@ -91,19 +99,20 @@ eda$prd_c<-factor((eda$prd_c),levels = (c("400-500","500-600","600-700","700-800
 
 ### Empirical Mode Decomposition (hrel_6)
 par(mfrow=c(3,1), mar=c(1.5,0.1,0.2,0.1))
-try <- emd(eda$hrel_6, eda$z, boundary="wave")
+im_hrel <- emd(eda$hrel_6, eda$z, boundary="wave")
 
 
 ### Ploting the IMF's
 par(mfrow=c(3,1), mar=c(1.5,0.1,0.2,0.1))
-par(mfrow=c(try$nimf+1, 1), mar=c(1.5,0.1,0.2,0.1))
-rangeimf <- range(try$imf)
-for(i in 1:try$nimf)
-   plot(eda$z, try$imf[,i], type="l", xlab="",
+par(mfrow=c(im_hrel$nimf+1, 1), mar=c(1.5,0.1,0.2,0.1))
+rangeimf <- range(im_hrel$imf)
+for(i in 1:im_hrel$nimf)
+   plot(eda$z, im_hrel$imf[,i], type="l", xlab="",
           ylab="", ylim=rangeimf, main=
             paste(i, "-th IMF", sep="")); abline(h=0)
-plot(eda$z, try$residue, xlab="", ylab="",
+plot(eda$z, im_hrel$residue, xlab="", ylab="",
         main="residue", type="l")
+
 
 ### Empirical Mode Decomposition (d_50)
 par(mfrow=c(3,1), mar=c(0.5,0.1,0.2,0.1))
