@@ -15,7 +15,7 @@
 # librarian::lib_startup(librarian, global = TRUE)
 # source: https://cran.r-project.org/web/packages/librarian/readme/README.html
 
-librarian::shelf(ggplot2,dplyr,imputeTS,curl,EMD)
+librarian::shelf(ggplot2,dplyr,imputeTS,curl,EMD,plot3D,plot3Drgl)
 
 
 # library(ggplot2)
