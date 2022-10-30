@@ -215,3 +215,26 @@ for(i in 1:try$nimf)
          paste(i, "-th IMF", sep="")); abline(h=0)
 plot(eda$z, try$residue, xlab="", ylab="",
      main="residue", type="l")
+
+
+# Entropy Plot 3D
+
+# By chronological period
+p <- ggplot(eda,aes(sp23,hrel_3,color = as.factor(er)))+
+  geom_point(size = 3, shape =21)+
+  geom_path()+
+  facet_wrap(~as.factor(er))
+p
+
+p <- ggplot(eda,aes(sp23,hrel_3,color = prd_c))+
+  geom_point(size = 3, shape =21)
+p
+
+
+with(eda,scatter3D(sp13,sp23,hrel_3,bty ='b2',
+                   colvar = as.integer(prd_c),
+                   clab=c("Chronological","period"), 
+                   theta = 15, phi =20, main = "Particle size entropy", 
+                   xlab = "Coarse", ylab = "Medium",
+                   zlab = "Relative entropy"))
+plotrgl()
